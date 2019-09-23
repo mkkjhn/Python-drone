@@ -5,5 +5,5 @@ steps:
 - name: test
   image: python
   commands:
-  - python
-  - print("Hello")
+  - pip install -r requirements.txt
+  - pytest
