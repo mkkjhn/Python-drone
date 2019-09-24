@@ -1,8 +1,8 @@
 kind: pipeline
-name: default
+name: binwalk_pipeline
 
 steps:
-- name: test
-  image: python
+- name: binwalk test
+- image: cincan/binwalk
   commands:
-  - python -c "print('A')"
+    - docker run -v /samples:/samples cincan/binwalk /samples/firmware.bin
