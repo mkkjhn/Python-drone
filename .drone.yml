@@ -1,13 +1,11 @@
+---
 kind: pipeline
 type: docker
 name: default
 
 steps:
-- name: binwalk
-  image: gillis57/binwalk
+- name: greeting
+  image: golang:1.12
   commands:
-  - docker run --rm -v gillis57/binwalk -e 
-
-trigger:
-  branch:
-  - master
+  - go build
+  - go test
