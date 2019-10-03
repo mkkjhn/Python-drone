@@ -1,31 +1,13 @@
-name: default
-
 kind: pipeline
 type: docker
+name: default
 
 steps:
-- name: backend
-  image: golang
+- name: binwalk
+  image: gillis57/binwalk
   commands:
-    - go get
-    - go build
-    - go test
+  - docker run --rm -v gillis57/binwalk -e 
 
-- name: frontend
-  image: node:6
-  commands:
-    - npm install
-    - npm test
-
-- name: publish
-  image: plugins/docker
-  settings:
-    repo: octocat/hello-world
-    tags: [ 1, 1.1, latest ]
-    registry: index.docker.io
-
-- name: notify
-  image: plugins/slack
-  settings:
-    channel: developers
-    username: drone
+trigger:
+  branch:
+  - master
