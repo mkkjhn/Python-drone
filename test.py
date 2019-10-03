@@ -1,3 +1,4 @@
 import os
 
-print("aaa")
+for x in range(10):
+    print(x)
