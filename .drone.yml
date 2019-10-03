@@ -1,11 +1,8 @@
----
 kind: pipeline
-type: docker
 name: default
 
 steps:
-- name: greeting
-  image: golang:1.12
+- name: test
+  image: python3
   commands:
-  - go build
-  - go test
+  - python -c "print('A')"
