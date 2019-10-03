@@ -3,6 +3,6 @@ name: default
 
 steps:
 - name: test
-  image: python3
+  image: python
   commands:
   - python -c "print('A')"
