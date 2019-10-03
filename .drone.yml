@@ -1,8 +1,33 @@
-kind: pipeline
-name: default
+---
+resources:
+- name: workspace-repo
+  type: git
+  check_every: 10s
+  source:
+    branch: master
+    uri: ((publishing-outputs-uri)) 
+    private_key: ((publishing-outputs-private-key))
+    paths: # trigger only when these change
+       - samples/*
+       - scripts/*
 
-steps:
-- name: test
-  image: python
-  commands:
-  - python test.py
+jobs:
+- name: extract-strings
+  plan:
+  - get: workspace-repo
+    trigger: true
+  - task: strings
+    config:
+      platform: linux
+      image_resource:
+        type: docker-image
+        source: {repository: alpine/git, tag: latest}
+      inputs:
+        - name: workspace-repo
+      outputs:
+        - name: updated-workspace-repo
+      run:
+        path: workspace-repo/scripts/run-strings-over-samples.sh
+  - put: workspace-repo
+    params:
+      repository: updated-workspace-repo
