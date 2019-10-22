@@ -3,7 +3,7 @@
 which ssh-agent || (apk add --update openssh-client)
 eval $(ssh-agent -s)
 mkdir -p ~/.ssh
-echo "$SSH_PRIV_KEY" | ssh-add -
+echo "$GIT_SSH_KEY" | ssh-add -
 echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
 git config --global user.email "$GITHUB_USER_EMAIL"
 git config --global user.name  "$GITHUB_USER_ID"
