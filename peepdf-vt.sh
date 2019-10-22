@@ -5,15 +5,15 @@ eval $(ssh-agent -s)
 mkdir -p ~/.ssh
 echo "$SSH_PRIV_KEY" | ssh-add -
 echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
-git config --global user.email "$GITLAB_USER_EMAIL"
-git config --global user.name  "$GITLAB_USER_ID"
+git config --global user.email "$GITHUB_USER_EMAIL"
+git config --global user.name  "$GITHUB_USER_ID"
 #git remote set-url --push origin git@gitlab.com:${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}.git
 
 SAMPLESPATH=$(pwd)
 mkdir -p ${SAMPLESPATH}/output-files/results
 cd $SAMPLESPATH/output-files
 git init
-git remote add origin git@gitlab.com:${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}.git
+git remote add origin git@github.com:${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}.git
 #git remote set-url --push origin git@gitlab.com:${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}.git
 git pull origin master
 ls $SAMPLESPATH/pdf-source/ -R
