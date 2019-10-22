@@ -9,7 +9,7 @@ git config --global user.email "$GITHUB_USER_EMAIL"
 git config --global user.name  "$GITHUB_USER_ID"
 #git remote set-url --push origin git@gitlab.com:${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}.git
 
-SAMPLESPATH=$(pwd)
+SAMPLESPATH="Python-drone"
 mkdir -p ${SAMPLESPATH}/output-files/results
 cd $SAMPLESPATH/output-files
 git init

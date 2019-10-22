@@ -10,7 +10,7 @@ git config --global user.name  "$GITHUB_USER_ID"
 #git remote set-url --push origin git@gitlab.com:${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}.git
 
 #git clone results output-files
-SAMPLESPATH=$(pwd)
+SAMPLESPATH="Python-drone"
 
 if [[ "$(ls $SAMPLESPATH/pdf-source/pdf |wc -l)" == 0 ]]; then  
 	echo "Folder is empty"
