@@ -3,14 +3,14 @@
 which ssh-agent || (apk add --update openssh-client)
 eval $(ssh-agent -s)
 mkdir -p ~/.ssh
-echo "$GIT_SSH_KEY" | ssh-add -
+echo "$SSH_PRIV_KEY" | ssh-add -
 echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
 git config --global user.email "$GITHUB_USER_EMAIL"
 git config --global user.name  "$GITHUB_USER_ID"
 #git remote set-url --push origin git@gitlab.com:${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}.git
 
 #git clone results output-files
-SAMPLESPATH="Python-drone"
+SAMPLESPATH=$(pwd)
 
 if [[ "$(ls $SAMPLESPATH/pdf-source/pdf |wc -l)" == 0 ]]; then  
 	echo "Folder is empty"

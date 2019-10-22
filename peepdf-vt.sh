@@ -3,13 +3,13 @@
 which ssh-agent || (apk add --update openssh-client)
 eval $(ssh-agent -s)
 mkdir -p ~/.ssh
-echo "$GIT_SSH_KEY" | ssh-add -
+echo "$SSH_PRIV_KEY" | ssh-add -
 echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
 git config --global user.email "$GITHUB_USER_EMAIL"
 git config --global user.name  "$GITHUB_USER_ID"
 #git remote set-url --push origin git@gitlab.com:${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}.git
 
-SAMPLESPATH="Python-drone"
+SAMPLESPATH=$(pwd)
 mkdir -p ${SAMPLESPATH}/output-files/results
 cd $SAMPLESPATH/output-files
 git init
