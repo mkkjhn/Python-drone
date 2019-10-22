@@ -20,6 +20,9 @@ steps:
     - git pull origin master
 - name: job-pdfid
   image: cincan/pdfid
+  environment:
+    GIT_SSH_KEY:
+      from_secret: GIT_SSH_KEY
   commands:
     - ls -R
     - /bin/sh pdfid.sh
@@ -27,6 +30,9 @@ steps:
 
 - name: job-peepdf
   image: cincan/peepdf
+  environment:
+    GIT_SSH_KEY:
+      from_secret: GIT_SSH_KEY
   commands:
     - ls -R
     - /bin/bash peepdf-vt.sh
@@ -34,6 +40,9 @@ steps:
 
 - name: jsunpackn
   image: cincan/jsunpack-n
+  environment:
+    GIT_SSH_KEY:
+      from_secret: GIT_SSH_KEY
   commands:
     - /bin/bash jsunpackn.sh
   depends_on: [job-pdfid, job-peepdf]
